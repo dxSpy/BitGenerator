@@ -1,0 +1,54 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:BeatMaker.App.ViewModels"
+		x:Class="BeatMaker.App.Views.MainWindow"
+		x:DataType="vm:MainWindowViewModel"
+		Title="BeatMaker"
+		Width="1100"
+		Height="720"
+		MinWidth="800"
+		MinHeight="560"
+		Background="#111318">
+	<Grid RowDefinitions="Auto,Auto,*" Margin="28">
+	<StackPanel Spacing="6">
+	  <TextBlock Text="BEATMAKER" FontSize="24" FontWeight="Bold" Foreground="#F4F5F7" />
+	  <TextBlock Text="Step sequencer" Foreground="#9CA3AF" />
+	</StackPanel>
+	<Border Grid.Row="1" Margin="0,24,0,0" Padding="20" CornerRadius="12" Background="#1B1F29">
+		<Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*,Auto" RowDefinitions="Auto,Auto">
+		<Button x:Name="OpenProjectButton" Grid.RowSpan="2" Content="Открыть" />
+		<Button x:Name="SaveProjectButton" Grid.Column="1" Grid.RowSpan="2" Content="Сохранить" Margin="6,0" />
+		<Button x:Name="ImportSampleButton" Grid.Column="2" Grid.RowSpan="2" Content="Импорт WAV…" />
+		<Button x:Name="ImportMidiButton" Grid.Column="3" Grid.RowSpan="2" Content="Импорт MIDI…" Margin="6,0" />
+		<Button x:Name="ExportMidiButton" Grid.Column="4" Grid.RowSpan="2" Content="Экспорт MIDI…" />
+		<Button Grid.Column="5" Content="▶ Play" Command="{Binding PlayCommand}" Margin="6,0" />
+		<Button Grid.Column="6" Content="Ⅱ Pause" Command="{Binding PauseCommand}" Margin="6,0" />
+		<Button Grid.Column="7" Content="■ Stop" Command="{Binding StopCommand}" Margin="6,0" />
+		<TextBlock Grid.Column="8" Text="BPM" VerticalAlignment="Center" Foreground="#D1D5DB" />
+		<NumericUpDown Grid.Row="1" Grid.Column="8" Minimum="40" Maximum="300" Value="{Binding TempoBpm}" Width="110" />
+		<TextBlock Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="3" Text="{Binding SampleName}" VerticalAlignment="Center" Foreground="#D1D5DB" />
+	  </Grid>
+	</Border>
+	<Border Grid.Row="2" Margin="0,20,0,0" Padding="20" CornerRadius="12" Background="#1B1F29">
+	  <Grid RowDefinitions="Auto,Auto,*">
+		<TextBlock Text="ПАТТЕРН · 16 ШАГОВ" FontSize="16" FontWeight="Bold" Foreground="#F4F5F7" />
+		<ItemsControl Grid.Row="1" ItemsSource="{Binding Steps}" Margin="0,16,0,0">
+		  <ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+			  <UniformGrid Columns="8" Rows="2" />
+			</ItemsPanelTemplate>
+		  </ItemsControl.ItemsPanel>
+		  <ItemsControl.ItemTemplate>
+			<DataTemplate x:DataType="vm:SequencerStepViewModel">
+			  <ToggleButton Content="{Binding Index, StringFormat=\{0:D2\}}"
+						IsChecked="{Binding IsEnabled}"
+						Margin="5"
+						MinHeight="62" />
+			</DataTemplate>
+		  </ItemsControl.ItemTemplate>
+		</ItemsControl>
+		<TextBlock Grid.Row="2" Text="{Binding StatusMessage}" VerticalAlignment="Bottom" Foreground="#9CA3AF" />
+	  </Grid>
+	</Border>
+  </Grid>
+</Window>

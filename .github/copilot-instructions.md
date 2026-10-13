@@ -1,0 +1,5 @@
+# Copilot Instructions
+
+## Рекомендации по проекту
+- For this user's music beatmaker project, the authoritative stack is C# 12/.NET 8, Avalonia with MVVM, NAudio/ASIO/WASAPI, DryWetMIDI, Microsoft DI, Microsoft.Extensions.Logging + Serilog, System.Text.Json, xUnit + FluentAssertions, and a four-project solution (Core, Audio, App, Tests). User requires strict staged delivery: execute only the currently requested numbered step, then stop and wait for “дальше”; do not ask clarifying questions. Code style: file-scoped namespaces, nullable, public XML docs, interface-based services, async for I/O, no allocations in audio hot path; answer format includes layer, files, integration, tests/edge cases, next step.
+- User prefers that audits/corrections continue autonomously until completion, without additional questions; reports should explicitly list found, corrected, remaining, and items requiring manual review.

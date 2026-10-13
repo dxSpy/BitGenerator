@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<OutputType>WinExe</OutputType>
+	<TargetFramework>net8.0</TargetFramework>
+	<LangVersion>12.0</LangVersion>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+  <ItemGroup>
+	<ProjectReference Include="..\BeatMaker.Core\BeatMaker.Core.csproj" />
+	<ProjectReference Include="..\BeatMaker.Audio\BeatMaker.Audio.csproj" />
+	<PackageReference Include="Avalonia" Version="11.2.3" />
+	<PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
+	<PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
+	<PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+	<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+	<PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+	<PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+	<PackageReference Include="Avalonia.Diagnostics" Version="11.2.3" />
+  </ItemGroup>
+</Project>
